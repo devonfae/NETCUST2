@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>File(s) size</title>
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <script type="module" src="./src/main.js"></script>
+  </head>
+
+  <body>
+    <div id="romPicker">
+    <p>Contrary to popular belief, Lorem Ipsum is not simply random text.
+     It has roots in a piece of classical Latin literature from 45 BC, 
+     making it over 2000 years old. Richard McClintock, a Latin professor 
+     at Hampden-Sydney College in Virginia, looked up one of the more 
+     obscure Latin words, consectetur, from a Lorem Ipsum passage, and 
+     going through the cites of the word in classical literature, 
+     discovered the undoubtable source. Lorem Ipsum comes from sections 
+     1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes 
+     of Good and Evil) by Cicero, written in 45 BC. This book is a 
+     treatise on the theory of ethics, very popular during the 
+     Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit 
+     amet..", comes from a line in section 1.10.32.</p>
+    <p>
+      <input id="romFile" type="file" accept=".gba" class="visually-hidden" />
+      <label for="romFile" class="highlight">[ Select a file ]</label>
+    </p>
+    </div>
+    <p id="fileSizeNG" style="display: none;">
+      ROM size NG!<br />
+      Please try "<span class="keyword">AE2E</span>" !
+    </p>
+    <p id="fileSizeOK" style="display: none;">
+      ROM size . . . <span class="highlight" id="slow" style="display:none;">OK!</span>
+    </p>
+    <p id="romCheckNG" style="display: none;">
+      Could not authenticate!<br />
+      Please try "<span class="keyword">AE2E</span>" !
+    </p>
+    <p id="romCheckOK" style="display: none;">
+      "<span class="keyword">MEGAMAN BATTLE NETWORK 2</span>" confirmed!!<br /><br />
+      Now loading . . .
+    </p>
+    <div id="fullAccess" style="display: none;">
+      <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO NETCUST2 MAIN MENU</p>
+      <form name="flags">
+        <p>
+          &nbsp;&nbsp;&nbsp;Please enter your passcode.<br />
+          &nbsp;&nbsp;&nbsp;<label for="passcode" class="highlight">&gt;</label><input type="text"
+           id="passcode" name="passcode" required minlength="4" maxlength="10" size="12" 
+           style="border: none;  background-color: black;  color: white;
+             font-family: 'Courier New', Courier, monospace;  font-weight: bold;
+             font-size: 1em;" /><br />
+          <button type="button" id="passcodeGen" class="visually-hidden"></button>
+          &nbsp;&nbsp;&nbsp;<label for="passcodeGen" class="highlight">[ Auto-generate passcode ]</label>
+        </p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHIP CODES</p>
+        <p>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesRandom" name="Codes" value="Random" checked />
+            <label for="CodesRandom">Assign chip codes randomly</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesShortAlphabet" name="Codes" value="ShortAlphabet" />
+            <label for="CodesShortAlphabet">Reduce possible codes from A–Z (26) to A–P (16)</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesLimitThree" name="Codes" value="LimitThree" />
+            <label for="CodesLimitThree">Reduce each chip’s possible codes from 5 + * to 3 + *</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesNoStar" name="Codes" value="NoStar" />
+            <label for="CodesNoStar">Remove all * codes</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesAllStar" name="Codes" value="AllStar" />
+            <label for="CodesAllStar">All chips are *</label>
+        </p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHOPS</p>
+        <p>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopShuffle" name="Shop" value="Shuffle" />
+            <label for="ShopShuffle">Shuffle existing chips</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopRandom" name="Shop" value="Random" checked/>
+            <label for="ShopRandom">Replace existing chips with random chips</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopFill" name="Shop" value="Fill" checked/>
+            <label for="ShopFill">Fill empty shop slots with random chips</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopConsolidate" name="Shop" value="Consolidate" disabled/>
+            <label for="ShopConsolidate">Consolidate HP Memory</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopFreeChips" name="Shop" value="FreeChips" />
+            <label for="ShopFreeChips">Chips are free</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopFreeItems" name="Shop" value="FreeItems" />
+            <label for="ShopFreeItems">Items are free</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopInclNavis" name="Shop" value="InclNavis" />
+            <label for="ShopInclNavis">Include Navi chips</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopInclSecret" name="Shop" value="InclSecret" />
+            <label for="ShopInclSecret">Include secret chips</label>
+        </p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAVIS</p>
+        <p>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviShuffle" name="Enemy" value="NaviShuffle" checked/>
+            <label for="NaviShuffle">Shuffle Navis</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" checked/>
+            <label for="NavisAlwaysDrop">V1 Navis always drop V1 Navi chips</label>
+        </p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIRUS BATTLE REWARDS</p>
+        <p>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleSame" name="Reward" value="ShuffleSame" checked/>
+            <label for="RewardShuffleSame">Shuffle same-tier rewards</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleAll" name="Reward" value="ShuffleAll" />
+            <label for="RewardShuffleAll">Shuffle all rewards</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoZenny" name="Reward" value="NoZenny" disabled/>
+            <label for="RewardNoZenny">Remove all zenny rewards</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoHP" name="Reward" value="NoHP" disabled/>
+            <label for="RewardNoHP">Remove all HP rewards</label><br/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoChips" name="Reward" value="NoChips" disabled/>
+            <label for="RewardNoChips">Remove all chip rewards</label>
+        </p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHER</p>
+        <p>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="MakeNewFolders" name="Other" value="MakeNewFolders" checked/>
+            <label for="MakeNewFolders">Generate new Default Folder</label><br />
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="SkipTutorial" name="Other" value="SkipTutorial" disabled/>
+            <label for="SkipTutorial">Skip tutorial</label>
+        </p>
+        <p>
+          <button type="button" id="randomizeRom" class="visually-hidden"></button>
+          &nbsp;&nbsp;&nbsp;<label for="randomizeRom" class="highlight">[ Execute! ]</label>
+      </div>
+    </form>
+
+  </body>
+</html>

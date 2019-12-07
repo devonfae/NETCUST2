@@ -1,0 +1,48 @@
+body {
+  background-color: black;
+  color: #AAAAAA;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 2em;
+  max-width: 40em;
+}
+
+.blu {
+  background-color: blue;
+  color: white;
+}
+
+.prompt {
+  border: none;
+  background-color: black;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.highlight {
+  color: white;
+}
+
+.keyword {
+  color: #00AAAA;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Separate rule for compatibility, 
+   :focus-within is required on modern Firefox and Chrome */
+input.visually-hidden:focus + label {
+  outline: thin dotted;
+}
+input.visually-hidden:focus-within + label {
+  outline: thin dotted;
+}

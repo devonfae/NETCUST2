@@ -25,7 +25,6 @@ export let newNaviMemory;
 // 0x15154
 // bosses start 0x80 in
 export const doTheThing = function(flags){
-  console.log("We are enemies!");
   enemyLibrary = romData.getView(0x15154,0xB8*8);
   assembleEnemyRecord();
   if (flags.EnemyShuffle){
@@ -38,12 +37,10 @@ export const doTheThing = function(flags){
       let tier1 = enemies.filter(x => enemyRecords[x][7] === 0); 
       let tier2 = enemies.filter(x => enemyRecords[x][7] === 1);
       let tier3 = enemies.filter(x => enemyRecords[x][7] === 2);
-      console.log(tier3);
       enemyMemory = tier1.concat(tier2).concat(tier3);
       rng.shuffle(tier1);
       rng.shuffle(tier2);
       rng.shuffle(tier3);      
-      console.log(tier3);
       enemies = tier1.concat(tier2).concat(tier3);
     }
     newEnemyMemory = enemies;
@@ -68,7 +65,6 @@ export const doTheThing = function(flags){
 
 const exchangeEnemies = function(old,nu,keepHp=false){
   for (let i = 0; i < old.length; i++){
-    console.log(old[i]+" and "+nu[i]);
     if (!keepHp) enemyLibrary.set(enemyRecords[nu[i]],old[i]*8);
     else enemyLibrary.set(enemyRecords[nu[i]].slice(2),old[i]*8+2);
   }

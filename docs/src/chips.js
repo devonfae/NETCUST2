@@ -201,6 +201,14 @@ export const getCodes = function(chip){
   return [];
 }
 
+export const getRarity = function(chip){
+  return chipRecords[chip[0]+chip[1]*256][9];
+}
+
+export const getCapacity = function(chip){
+  return chipRecords[chip[0]+chip[1]*256][10];  
+}
+
 const hasSequence = a =>
   (a[0]+2 === a[1]+1 && a[1]+1 === a[2]) || 
   (a[1]+2 === a[2]+1 && a[3]+1 === a[2]) || 

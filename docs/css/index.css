@@ -26,6 +26,10 @@ body {
   color: white;
 }
 
+.dark {
+  color: #555555;
+}
+
 .keyword {
   color: #00AAAA;
 }

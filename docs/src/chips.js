@@ -197,6 +197,12 @@ export const getCodes = function(chip){
   return [];
 }
 
+export const getRandomCode = function(chip){
+  let codes = getCodes(chip);
+  if (codes.length===0) return 0x1A;
+  return codes[rng.roll(codes.length)];
+}
+
 export const getRarity = chip => chipRecords[chip][9];
 
 export const getCapacity = chip => chipRecords[chip][10];  

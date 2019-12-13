@@ -70,6 +70,7 @@ const shuffleShopChips = function(){
           shopEntry.splice(8,4,cost%256,Math.floor(cost/256)%256,Math.floor(cost/(256*256))%256,0);
           shopEntry[1] = 3;
         }
+        if (shopEntry[6] != 0x1A) shopEntry[6] = chips.getRandomCode(shopEntry[4]+shopEntry[5]*256);
         shopChips.push(shopEntry);
       }
     }

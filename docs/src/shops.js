@@ -4,76 +4,112 @@ import * as chips from "./chips.js";
 
 let shopInventory;
 let shopRecords;
-let placedChips;
+let placedChips = [];
 
 export const doTheThing = function(flags){
   shopInventory = romData.getView(0x30184,12*8*25);
   assembleShopRecords();
   //if (flags.Consolidate);
-  console.log("Going shopping!");  
-  if (flags.Shuffle){
-    let chips = [];
+  if (flags.Shuffle) shuffleShopChips();
+  if (flags.Random){
     for (let i = 0; i < 25; i++){
       for (let j = 0; j < 8; j++){
-        if (shopRecords[i][j][0] === 2) chips.push(shopRecords[i][j]);
-      }
-    }
-    placedChips = chips;
-    rng.shuffle(chips);
-    for (let i = 0; i < 25; i++){
-      for (let j = 0; j < 8; j++){
-        if (shopRecords[i][j][0] === 2) shopInventory.set(chips.pop(),i*8*12+j*12);
-      }
-    }
-  } else if (flags.Random){
-    console.log("Replacing randomly!");
-    for (let i = 0; i < 25; i++){
-      for (let j = 0; j < 8; j++){
-        if (shopRecords[i][j][0] === 2) shopInventory.set(
-        generateChip(flags.InclNavis,flags.InclSecret),i*8*12+j*12);
+        if (shopRecords[i][j][0] === 2) {
+          let shopEntry = generateShopChip(flags.InclNavis,flags.InclSecret);
+          placedChips.push(extractChipFromShopEntry(shopEntry));
+          if (i === 22) {
+            let cost = Math.pow(2,chips.getRarity(extractChipFromShopEntry(shopEntry)));
+            shopEntry.splice(8,4,cost,0,0,0);
+            shopEntry[1] = 1;
+          }
+          shopInventory.set(shopEntry,i*8*12+j*12);
+        }
       }
     }
   }
   if (flags.Fill){
     for (let i = 0; i < 25; i++){
       for (let j = 0; j < 8; j++){
-        if (shopRecords[i][j][0] === 0) shopInventory.set(
-        generateChip(flags.InclNavis,flags.InclSecret),i*8*12+j*12);
+        if (shopRecords[i][j][0] === 0) {
+          let shopEntry = generateShopChip(flags.InclNavis,flags.InclSecret);
+          placedChips.push(extractChipFromShopEntry(shopEntry));
+          if (i === 22) {
+            let cost = Math.pow(2,chips.getRarity(extractChipFromShopEntry(shopEntry)));
+            shopEntry.splice(8,4,cost,0,0,0);
+            shopEntry[1] = 1;
+          }
+          shopInventory.set(shopEntry,i*8*12+j*12);
+        }
       }
     }
-  }
-  // correct prices at the bugfrag shop
-  for (let j = 0; j < 8; j++){
-    shopInventory.set([Math.pow(2,rng.roll(5)),0,0,0],22*8*12+j*12+8);
   }
   if (flags.FreeChips){
     for (let i = 0; i < 25; i++){
       for (let j = 0; j < 8; j++){
-        if (shopRecords[i][j][0] === 2) shopInventory.set([0,0,0,0],i*8*12+j*12+8);
+        if (shopInventory[i*8*12+j*12+0] === 2) shopInventory.set([0,0,0,0],i*8*12+j*12+8);
       }
     }
   }
   if (flags.FreeItems){
     for (let i = 0; i < 25; i++){
       for (let j = 0; j < 8; j++){
-        if (shopRecords[i][j][0] === 1) shopInventory.set([0,0,0,0],i*8*12+j*12+8);
+        if (shopInventory[i*8*12+j*12+0] === 1) shopInventory.set([0,0,0,0],i*8*12+j*12+8);
       }
     }
   }
 }
 
-const generateChip = function(navisOk,secretsOk){
+const shuffleShopChips = function(){
+  let shopChips = [];
+  for (let i = 0; i < 25; i++){
+    for (let j = 0; j < 8; j++){
+      if (shopRecords[i][j][0] === 2) {
+        let shopEntry = shopRecords[i][j];
+        if (i === 22) {
+          let cost = getChipCost(extractChipFromShopEntry(shopEntry));
+          shopEntry.splice(8,4,cost%256,Math.floor(cost/256)%256,Math.floor(cost/(256*256))%256,0);
+          shopEntry[1] = 3;
+        }
+        shopChips.push(shopEntry);
+      }
+    }
+  }
+  placedChips.concat(shopChips.map(extractChipFromShopEntry));
+  rng.shuffle(shopChips);
+  for (let i = 0; i < 25; i++){
+    for (let j = 0; j < 8; j++){
+      if (shopRecords[i][j][0] === 2) {
+        let shopEntry = shopChips.pop();
+        if (i === 22) {
+          let cost = Math.pow(2,chips.getRarity(extractChipFromShopEntry(shopEntry)));
+          shopEntry.splice(8,4,cost,0,0,0);
+          shopEntry[1] = 1;
+        }
+        shopInventory.set(shopEntry,i*8*12+j*12);
+      }
+    }
+  }
+}
+
+const extractChipFromShopEntry = shopEntry => shopEntry[4]+256*shopEntry[4+1];
+
+const generateShopChip = function(navisOk,secretsOk){
   let chip = chips.getRandomChip(navisOk,secretsOk);
   while (containsChip(placedChips, chip))
     chip = chips.getRandomChip(navisOk,secretsOk);
-  let cost = 50*Math.floor((Math.pow(1.5,1+chips.getRarity(chip)))*(10+chips.getCapacity(chip)));
+  let cost = getChipCost(chip[0]+chip[1]*256);
   let shopEntry = [2,3,0xFF,0xFF,chip[0],chip[1],chip[2],0,cost%256,Math.floor(cost/256)%256,Math.floor(cost/(256*256))%256,0]
-  console.log(shopEntry);
   return shopEntry;
 }
 
+const getChipCost = function(chip){
+  let r = chips.getRarity(chip);
+  let c = chips.getCapacity(chip);
+  return 100*(r+1)*Math.floor(Math.log(c)/Math.log(Math.SQRT2) + r*2 - 2);
+}
+
 const containsChip = function(chiplist, chip){
-  return false;
+  chiplist.includes(chip[0]+256*chip[1]);
 }
 
 const assembleShopRecords = function() {

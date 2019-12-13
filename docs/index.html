@@ -10,7 +10,7 @@
   <body>
     <div id="romPicker">
     <p>
-     Network Customizer V2.01b<br />
+     Network Customizer V2.01 build 11<br />
      A tool to manage your experience of navigating the networks<br />
      by seeliefae, in association with Dr. Starscream and the Edge Case Collective. Sponsored by Higureya Enterprises.<br />
      Copyright (C) Bumpy Lumpy Productions, Ltd., 1987, 1993, 2001, 2002. This is free software.<br />
@@ -47,14 +47,21 @@
       <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO NETCUST2 MAIN MENU</p>
       <form name="flags">
         <p>
-          &nbsp;&nbsp;&nbsp;Please enter your passcode.<br />
-          &nbsp;&nbsp;&nbsp;<label for="passcode" class="highlight">&gt;</label><input type="text"
-           id="passcode" name="passcode" required minlength="4" maxlength="10" size="12" 
-           style="border: none;  background-color: black;  color: white;
-             font-family: 'Courier New', Courier, monospace;  font-weight: bold;
-             font-size: 1em;" /><br />
+          &nbsp;&nbsp;&nbsp;Please slot in four chips.<br />
+          &nbsp;&nbsp;&nbsp;<label for="passcode1" class="highlight">&gt;</label><input type="text"
+           id="passcode1" name="passcode1" required minlength="4" maxlength="10" size="11" 
+           class="passcode" list="chipnames" />
+          &nbsp;&nbsp;<label for="passcode2" class="highlight">&gt;</label><input type="text"
+           id="passcode2" name="passcode2" required minlength="4" maxlength="10" size="11" 
+           class="passcode" list="chipnames" />
+          &nbsp;&nbsp;<label for="passcode3" class="highlight">&gt;</label><input type="text"
+           id="passcode3" name="passcode3" required minlength="4" maxlength="10" size="11" 
+           class="passcode" list="chipnames" />
+          &nbsp;&nbsp;<label for="passcode4" class="highlight">&gt;</label><input type="text"
+           id="passcode4" name="passcode4" required minlength="4" maxlength="10" size="11" 
+           class="passcode" list="chipnames" /><br />
           <button type="button" id="passcodeGen" class="visually-hidden"></button>
-          &nbsp;&nbsp;&nbsp;<label for="passcodeGen" class="highlight">[ Auto-generate passcode ]</label>
+          &nbsp;&nbsp;&nbsp;<label for="passcodeGen" class="highlight">[ Load random chips ]</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHIP CODES</p>
         <p>
@@ -90,22 +97,22 @@
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAVIS</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviShuffle" name="Enemy" value="NaviShuffle" disabled/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviShuffle" name="Enemy" value="NaviShuffle" checked/>
             <label for="NaviShuffle">Shuffle Navis</label><br/>
-            &nbsp;&nbsp;&nbsp;<input type="checkbox" id="WWWShuffle" name="Enemy" value="WWWShuffle"  disabled/>
+            &nbsp;&nbsp;&nbsp;<input type="checkbox" id="WWWShuffle" name="Enemy" value="WWWShuffle" />
             <label for="WWWShuffle">Include WWW Navis</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" disabled/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" checked/>
             <label for="NavisAlwaysDrop">V1 Navis always drop V1 Navi chips</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIRUSES</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="EnemyShuffle" name="Enemy" value="EnemyShuffle" disabled/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="EnemyShuffle" name="Enemy" value="EnemyShuffle" checked/>
             <label for="EnemyShuffle">Shuffle same-tier enemies</label><br/>
-            &nbsp;&nbsp;&nbsp;<input type="checkbox" id="EnemyFullShuffle" name="Enemy" value="EnemyFullShuffle" disabled/>
+            &nbsp;&nbsp;&nbsp;<input type="checkbox" id="EnemyFullShuffle" name="Enemy" value="EnemyFullShuffle" />
             <label for="EnemyFullShuffle">Shuffle all enemies</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleSame" name="Reward" value="ShuffleSame" disabled/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleSame" name="Reward" value="ShuffleSame" checked/>
             <label for="RewardShuffleSame">Shuffle same-tier rewards</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleAll" name="Reward" value="ShuffleAll" disabled/>
+          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleAll" name="Reward" value="ShuffleAll" />
             <label for="RewardShuffleAll">Shuffle all rewards</label><br/>
           &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoZenny" name="Reward" value="NoZenny" disabled/>
             <label for="RewardNoZenny" class="dark">Remove all zenny rewards</label><br/>
@@ -130,5 +137,268 @@
          on the Edge Case Collective's Discord server: <a href="https://discord.gg/Jqh4uz2">discord.gg/Jqh4uz2</a>.
     </form>
 
+
+    <datalist id="chipnames">
+      <option value="Cannon">
+      <option value="HiCannon"> 
+      <option value="M-Cannon"> 
+      <option value="Shotgun"> 
+      <option value="V-Gun">
+      <option value="CrossGun"> 
+      <option value="Spreader"> 
+      <option value="Bubbler">
+      <option value="Bub-V">
+      <option value="BubCross"> 
+      <option value="BubSprd">
+      <option value="HeatShot">
+      <option value="Heat-V">
+      <option value="HeatCros">
+      <option value="HeatSprd">
+      <option value="MiniBomb">
+      <option value="LilBomb">
+      <option value="CrosBomb">
+      <option value="BigBomb">
+      <option value="TreeBom1">
+      <option value="TreeBom2">
+      <option value="TreeBom3">
+      <option value="Sword">
+      <option value="WideSwrd">
+      <option value="LongSwrd">
+      <option value="FireSwrd">
+      <option value="AquaSwrd">
+      <option value="ElecSwrd">
+      <option value="FireBlde">
+      <option value="AquaBlde">
+      <option value="ElecBlde">
+      <option value="StepSwrd">
+      <option value="Muramasa">
+      <option value="CustSwrd">
+      <option value="Kunai1">
+      <option value="Kunai2">
+      <option value="Kunai3">
+      <option value="Slasher">
+      <option value="Shockwav">
+      <option value="Sonicwav">
+      <option value="Dynawave">
+      <option value="Quake1">
+      <option value="Quake2">
+      <option value="Quake3">
+      <option value="GutPunch">
+      <option value="ColdPnch">
+      <option value="Atk+20">
+      <option value="Atk+30">
+      <option value="Navi+40">
+      <option value="DashAtk">
+      <option value="Wrecker">
+      <option value="CannBall">
+      <option value="DoubNdl">
+      <option value="TripNdl">
+      <option value="QuadNdl">
+      <option value="Trident">
+      <option value="Ratton1">
+      <option value="Ratton2">
+      <option value="Ratton3">
+      <option value="FireRat">
+      <option value="Tornado">
+      <option value="Twister">
+      <option value="Blower">
+      <option value="Burner">
+      <option value="ZapRing1">
+      <option value="ZapRing2">
+      <option value="ZapRing3">
+      <option value="Spice1">
+      <option value="Spice2">
+      <option value="Spice3">
+      <option value="Satelit1">
+      <option value="Satelit2">
+      <option value="Satelit3">
+      <option value="Yo-Yo1">
+      <option value="Yo-Yo2">
+      <option value="Yo-Yo3">
+      <option value="MagBomb1">
+      <option value="MagBomb2">
+      <option value="MagBomb3">
+      <option value="Meteor9">
+      <option value="Meteor12">
+      <option value="Meteor15">
+      <option value="Meteor18">
+      <option value="Hammer">
+      <option value="CrsShld1">
+      <option value="CrsShld2">
+      <option value="CrsShld3">
+      <option value="TimeBom1">
+      <option value="TimeBom2">
+      <option value="TimeBom3">
+      <option value="LilCloud">
+      <option value="MedCloud">
+      <option value="BigCloud">
+      <option value="Mine">
+      <option value="FrntSnsr">
+      <option value="DblSnsr">
+      <option value="Remobit1">
+      <option value="Remobit2">
+      <option value="Remobit3">
+      <option value="AquaBall">
+      <option value="ElecBall">
+      <option value="HeatBall">
+      <option value="Geyser">
+      <option value="LavaDrag">
+      <option value="GodStone">
+      <option value="OldWood">
+      <option value="PoisMask">
+      <option value="PoisFace">
+      <option value="Whirlpl">
+      <option value="Blckhole">
+      <option value="Guard">
+      <option value="Barrier">
+      <option value="PanlOut1">
+      <option value="PanlOut3">
+      <option value="LineOut">
+      <option value="Lance">
+      <option value="ZeusHamr">
+      <option value="BrnzFist">
+      <option value="SilvFist">
+      <option value="GoldFist">
+      <option value="VarSwrd">
+      <option value="Recov10">
+      <option value="Recov30">
+      <option value="Recov50">
+      <option value="Recov80">
+      <option value="Recov120">
+      <option value="Recov150">
+      <option value="Recov200">
+      <option value="Recov300">
+      <option value="PanlGrab">
+      <option value="AreaGrab">
+      <option value="GrabRvng">
+      <option value="Geddon1">
+      <option value="Geddon2">
+      <option value="Geddon3">
+      <option value="Catcher">
+      <option value="Mindbndr">
+      <option value="Escape">
+      <option value="AirShoes">
+      <option value="Repair">
+      <option value="Candle1">
+      <option value="Candle2">
+      <option value="Candle3">
+      <option value="RockCube">
+      <option value="Prism">
+      <option value="Guardian">
+      <option value="Wind">
+      <option value="Fan">
+      <option value="Anubis">
+      <option value="SloGauge">
+      <option value="FstGauge">
+      <option value="FullCust">
+      <option value="Invis1">
+      <option value="Invis2">
+      <option value="Invis3">
+      <option value="DropDown">
+      <option value="PopUp">
+      <option value="StoneBod">
+      <option value="Shadow1">
+      <option value="Shadow2">
+      <option value="Shadow3">
+      <option value="UnderSht">
+      <option value="BblWrap">
+      <option value="LeafShld">
+      <option value="AquaAura">
+      <option value="FireAura">
+      <option value="WoodAura">
+      <option value="ElecAura">
+      <option value="LifeAur1">
+      <option value="LifeAur2">
+      <option value="LifeAur3">
+      <option value="MagLine">
+      <option value="LavaLine">
+      <option value="IceLine">
+      <option value="GrassLne">
+      <option value="LavaStge">
+      <option value="IceStage">
+      <option value="GrassStg">
+      <option value="HolyPanl">
+      <option value="Jealosy">
+      <option value="AntiFire">
+      <option value="AntiElec">
+      <option value="AntiWatr">
+      <option value="AntiDmg">
+      <option value="AntiSwrd">
+      <option value="AntiNavi">
+      <option value="AntiRecv">
+      <option value="Atk+10">
+      <option value="Fire+40">
+      <option value="Aqua+40">
+      <option value="Wood+40">
+      <option value="Elec+40">
+      <option value="Navi+20">
+      <option value="Roll">
+      <option value="RollV2">
+      <option value="RollV3">
+      <option value="GutsMan">
+      <option value="GutsManV2">
+      <option value="GutsManV3">
+      <option value="ProtoMan">
+      <option value="ProtoMnV2">
+      <option value="ProtoMnV3">
+      <option value="AirMan">
+      <option value="AirManV2">
+      <option value="AirManV3">
+      <option value="QuickMan">
+      <option value="QuickMnV2">
+      <option value="QuickMnV3">
+      <option value="CutMan">
+      <option value="CutManV2">
+      <option value="CutManV3">
+      <option value="ShadoMan">
+      <option value="ShadoMnV2">
+      <option value="ShadoMnV3">
+      <option value="KnightMn">
+      <option value="KnghtMnV2">
+      <option value="KnghtMnV3">
+      <option value="MagnetMn">
+      <option value="MagntMnV2">
+      <option value="MagntMnV3">
+      <option value="FreezeMn">
+      <option value="FrzManV2">
+      <option value="FrzManV3">
+      <option value="HeatMan">
+      <option value="HeatManV2">
+      <option value="HeatManV3">
+      <option value="ToadMan">
+      <option value="ToadManV2">
+      <option value="ToadManV3">
+      <option value="ThunMan">
+      <option value="ThunManV2">
+      <option value="ThunManV3">
+      <option value="SnakeMan">
+      <option value="SnakeMnV2">
+      <option value="SnakeMnV3">
+      <option value="GateMan">
+      <option value="GateManV2">
+      <option value="GateManV3">
+      <option value="PlanetMn">
+      <option value="PlnetMnV2">
+      <option value="PlnetMnV3">
+      <option value="NapalmMn">
+      <option value="NaplmMnV2">
+      <option value="NaplmMnV3">
+      <option value="PharoMan">
+      <option value="PharoMnV2">
+      <option value="PharoMnV3">
+      <option value="Bass">
+      <option value="BassV2">
+      <option value="BassV3">
+      <option value="BgRedWav">
+      <option value="FreezBom">
+      <option value="Sparker">
+      <option value="GaiaSwrd">
+      <option value="BlkBomb">
+      <option value="FtrSword">
+      <option value="KngtSwrd">
+      <option value="HeroSwrd">
+      <option value="Meteors">
+      <option value="Poltrgst">
+    </datalist>
   </body>
 </html>

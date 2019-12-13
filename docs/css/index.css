@@ -13,6 +13,15 @@ body {
   color: white;
 }
 
+.passcode{
+  border: none;  
+  background-color: black;  
+  color: white;
+  font-family: 'Courier New', Courier, monospace;  
+  font-weight: bold;
+  font-size: 1em;
+}
+
 .prompt {
   border: none;
   background-color: black;

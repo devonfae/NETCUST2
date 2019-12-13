@@ -38,8 +38,13 @@ const saveData = (function () {
 }());
 
 export const saveRom = function() {
-  saveData(randomizedRom,
-   "MMBN2_"+document.getElementById("passcode").value+"_"+rng.roll(100000000)+".gba");
+  let flagstring = "MMBN2_"+
+    document.getElementById("passcode1").value+"_"+
+    document.getElementById("passcode2").value+"_"+
+    document.getElementById("passcode3").value+"_"+
+    document.getElementById("passcode4").value+"_"+
+    rng.roll(100000000)+".gba";
+  saveData(randomizedRom,flagstring);
 };
 
 export const loadRom = function() {

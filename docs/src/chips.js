@@ -37,14 +37,11 @@ export const doTheThing = function(flags){
   findNavis();
   if (flags.LimitThree) limit = 3;
   if (flags.ShortAlphabet) alphabet = 16;  
-  if (flags.AllStar || flags.Random){
-    eraseAllNonStarCodes();
-    if (flags.AllStar) starOnlyChips = allChips;
-  }
-  if (flags.Random){
-    makeRandom();
-  } 
+  if (flags.AllStar || flags.Random) eraseAllNonStarCodes();
+  if (flags.AllStar) starOnlyChips = allChips;
+  if (flags.Random) makeRandom();
   if (flags.NoStar) removeStarCodes();
+  assembleChipRecord();
 }
 
 const findStarOnlys = function(){
@@ -60,17 +57,15 @@ const findNavis = function(){
 }
 
 const eraseAllNonStarCodes = function(){
-  for (let i = 0; i < 0x21E0; i += 0x20){
-    chipLibrary.set([0xFF,0xFF,0xFF,0xFF,0xFF,0x1A],i);
+  for (let i = 0; i < 0x10F; i ++){
+    chipLibrary.set([0xFF,0xFF,0xFF,0xFF,0xFF,0x1A],i*0x20);
   }
 }
 
 const removeStarCodes = function(){
-  for (let i = 0; i < 0x21E0; i += 0x20){
+  for (let i = 0; i < 0x10F; i ++){
   //only remove star if it's not a star-only chip
-    if (!romData.compareArray([0xFF,0xFF,0xFF,0xFF,0xFF],chipLibrary.slice(i,i+5))){
-      chipLibrary.set([0xFF],i+5);
-    }
+    if (!starOnlyChips.includes(i)) chipLibrary.set([0xFF],i*0x20+5);
   }  
 }
 
@@ -81,33 +76,34 @@ const makeRandom = function(){
     for (let i = 4; i < 0xC0; i += 24){
       let code = rng.roll(alphabet-5);
       for (let j = 0; j < 5; j++){
-        fiveChipSeq.set([code+j],j*4+2);
+        fiveChipSeq.set([code+j],i+j*4+2);
         assignCode(fiveChipSeq[i+j*4]+256*fiveChipSeq[i+j*4+1],code+j);
       }
     }
   }
   // then, 3-chip sequential PAs
   let threeChipSeq = romData.getView(0xBD50,0x180);
-  for (let i = 4; i < 0x350; i += 16){
+  for (let i = 4; i < 0x180; i += 16){
     let codes = getCodes(threeChipSeq[i]+256*threeChipSeq[i+1]);
     if (!hasSequence(codes)){
       let code = rng.roll(alphabet-3);
       for (let j = 0; j < 3; j++){  
-        threeChipSeq.set([code+j],j*4+2);
+        threeChipSeq.set([code+j],i+j*4+2);
         assignCode(threeChipSeq[i+j*4]+256*threeChipSeq[i+j*4+1],code+j);        
       }
     }
   }
   // finally, 3-chip unique PAs
   let threeChipUniq = romData.getView(0xBED0,0x1D0);
-  for (let i = 4; i < 0x350; i += 16){
+  for (let i = 4; i < 0x1D0; i += 16){
     let share = sharesAnyCode(threeChipUniq[i]+256*threeChipUniq[i+1],
                               threeChipUniq[i+4]+256*threeChipUniq[i+4+1]);
     if (!(share && hasCode(threeChipUniq[i+8]+256*threeChipUniq[i+8+1],share))){
       let code = rng.roll(alphabet);
       assignCode(threeChipUniq[i]+256*threeChipSeq[i+1],code);
       assignCode(threeChipUniq[i+4]+256*threeChipSeq[i+4+1],code);
-      assignCode(threeChipUniq[i+8]+256*threeChipSeq[i+8+1],code);        
+      assignCode(threeChipUniq[i+8]+256*threeChipSeq[i+8+1],code);  
+      codeStrength[code][1] = codeStrength[code][1] + 3;      
     }
   }
   //now, fill in the rest
@@ -126,9 +122,9 @@ const makeRandom = function(){
     }
   }
   //console.log(codeStrength);
-  assembleChipRecord();
 }
 
+  // Take a chip number and a proposed code
 const assignCode = function(chip, code){
   let codes = getCodes(chip);
   if (codes.length === 0) {
@@ -201,13 +197,9 @@ export const getCodes = function(chip){
   return [];
 }
 
-export const getRarity = function(chip){
-  return chipRecords[chip[0]+chip[1]*256][9];
-}
+export const getRarity = chip => chipRecords[chip][9];
 
-export const getCapacity = function(chip){
-  return chipRecords[chip[0]+chip[1]*256][10];  
-}
+export const getCapacity = chip => chipRecords[chip][10];  
 
 const hasSequence = a =>
   (a[0]+2 === a[1]+1 && a[1]+1 === a[2]) || 

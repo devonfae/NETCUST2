@@ -11,9 +11,12 @@ const getRom = function (){
   romData.loadRom();
   changePasscode();
 };
+
 const makeRom = function (){
-  rng.seed(document.getElementById("passcode").value,
-    document.getElementById("passcode").value.toUpperCase());
+  rng.seed(document.getElementById("passcode1").value,
+           document.getElementById("passcode2").value,
+           document.getElementById("passcode3").value,
+           document.getElementById("passcode4").value);
   rng.roll(20);
   rng.roll(20);
   rng.roll(20);
@@ -26,8 +29,12 @@ const makeRom = function (){
   general.doTheThing(toDict(document.forms.flags.elements.Other));
   romData.saveRom();
 };
+
 const changePasscode = function(){
-  document.getElementById("passcode").value = getRandomChipName();
+  document.getElementById("passcode1").value = getRandomChipName();
+  document.getElementById("passcode2").value = getRandomChipName();
+  document.getElementById("passcode3").value = getRandomChipName();
+  document.getElementById("passcode4").value = getRandomChipName();
 }
 const toDict = function(arr){
   let dict = {};

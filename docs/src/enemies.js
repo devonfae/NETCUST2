@@ -1,4 +1,5 @@
 import * as rng from "./rng.js"
+import * as rewards from "./rewards.js"
 import * as romData from "./romData.js"
 
 let enemyLibrary;
@@ -71,6 +72,7 @@ const exchangeEnemies = function(old,nu,keepHp=false){
     if (!keepHp) enemyLibrary.set(enemyRecords[nu[i]],old[i]*8);
     else enemyLibrary.set(enemyRecords[nu[i]].slice(2),old[i]*8+2);
     enemyNameTable.set(enemyNameRecords[nu[i]],old[i]*2);
+    rewards.copyDrops(old[i],nu[i]);
   }
 }
 
@@ -87,10 +89,4 @@ const assembleEnemyRecord = function(){
   for (let i = 0; i < 0x100; i++){
     enemyNameRecords[i] = [enemyNameTable[2*i],enemyNameTable[2*i+1]];
   }
-}
-
-const correctEnemyNames = function(){
-  let oldlist = enemyMemory.concat(naviMemory);
-  let newlist = newEnemyMemory.concat(newNaviMemory);
-  
 }

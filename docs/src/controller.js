@@ -24,8 +24,8 @@ const makeRom = function (){
   rng.roll(20);  
   chips.doTheThing(toDict(document.forms.flags.elements.Codes));
   shops.doTheThing(toDict(document.forms.flags.elements.Shop));
+  rewards.doTheThing(toDict(document.forms.flags.elements.Reward));
   enemies.doTheThing(toDict(document.forms.flags.elements.Enemy));
-  //rewards.doTheThing(toDict(document.forms.flags.elements.Reward));
   general.doTheThing(toDict(document.forms.flags.elements.Other));
   romData.saveRom();
 };

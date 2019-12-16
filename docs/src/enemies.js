@@ -3,10 +3,12 @@ import * as romData from "./romData.js"
 
 let enemyLibrary;
 let enemyRecords;
+let enemyNameTable;
+let enemyNameRecords;
 
 const blankEnemies = [0x7B, 0x7C, 0x7D, 0x7E, 0x7F, 0x96, 0x97];
-const buggedEnemies = [0x5A, 0x5B, 0x5C, 0x6F, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 
-  0xA1, 0xA2, 0xA3];
+const buggedEnemies = [0x57, 0x58, 0x59, 0x5A, 0x5B, 0x5C, 0x6F, 0x70, 0x71, 0x72, 0x73, 
+  0x74, 0x75, 0x76, 0x95, 0xA1, 0xA2, 0xA3];
 const allEnemies = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 
   21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 
   43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 
@@ -68,6 +70,7 @@ const exchangeEnemies = function(old,nu,keepHp=false){
   for (let i = 0; i < old.length; i++){
     if (!keepHp) enemyLibrary.set(enemyRecords[nu[i]],old[i]*8);
     else enemyLibrary.set(enemyRecords[nu[i]].slice(2),old[i]*8+2);
+    enemyNameTable.set(enemyNameRecords[nu[i]],old[i]*2);
   }
 }
 
@@ -79,4 +82,15 @@ const assembleEnemyRecord = function(){
       enemyRecords[i][j] = enemyLibrary[i*8+j];
     }
   }
+  enemyNameTable = romData.getView(0x73308C,0x0200);
+  enemyNameRecords = new Array(512);
+  for (let i = 0; i < 0x100; i++){
+    enemyNameRecords[i] = [enemyNameTable[2*i],enemyNameTable[2*i+1]];
+  }
+}
+
+const correctEnemyNames = function(){
+  let oldlist = enemyMemory.concat(naviMemory);
+  let newlist = newEnemyMemory.concat(newNaviMemory);
+  
 }

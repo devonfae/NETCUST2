@@ -83,13 +83,21 @@ const makeRandom = function(){
   }
   // then, 3-chip sequential PAs
   let threeChipSeq = romData.getView(0xBD50,0x180);
-  for (let i = 4; i < 0x180; i += 16){
+  for (let i = 4; i < 0x180; i += 3*16){
     let codes = getCodes(threeChipSeq[i]+256*threeChipSeq[i+1]);
     if (!hasSequence(codes)){
-      let code = rng.roll(alphabet-3);
+      let code = rng.roll(alphabet-5);
       for (let j = 0; j < 3; j++){  
         threeChipSeq.set([code+j],i+j*4+2);
         assignCode(threeChipSeq[i+j*4]+256*threeChipSeq[i+j*4+1],code+j);        
+        threeChipSeq.set([code+j+1],i+16+j*4+2);
+        threeChipSeq.set([code+j+2],i+32+j*4+2);
+      }
+    } else {
+      for (let j = 0; j < 3; j++){  
+        threeChipSeq.set([codes[j]],i+j*4+2);
+        threeChipSeq.set([codes[j+1]],i+16+j*4+2);
+        threeChipSeq.set([codes[j+2]],i+32+j*4+2);
       }
     }
   }

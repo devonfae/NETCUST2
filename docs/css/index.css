@@ -43,13 +43,35 @@ body {
   color: #00AAAA;
 }
 
-.visually-hidden {
+.visually-hidden, input[type=checkbox] {
   position: absolute !important;
   height: 1px;
   width: 1px;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
 }
+
+
+input[type=checkbox] + label:before {
+  content: "[ ] ";
+}
+input[type=checkbox]:checked + label:before {
+  content: "[X] ";
+}
+input[type=checkbox]:checked + label {
+  color: white;
+}
+
+input[type=radio] + label:before {
+  content: "( ) ";
+}
+input[type=radio]:checked + label:before {
+  content: "(o) ";
+}
+input[type=radio]:checked + label {
+  color: white;
+}
+
 
 /* Separate rule for compatibility, 
    :focus-within is required on modern Firefox and Chrome */

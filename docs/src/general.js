@@ -48,8 +48,9 @@ const buildFolder = function(index, rarity1, rarity2, rarity3){
     folders[index*4*30+i*4+6] = chip[2];  
   }
   for (let i = 25; i < 30; i++){
-    do chip = chips.getRandomChipByRarity(false,false,rarity3);
-    while (!codes.includes(chip[2]));
+    do {
+      chip = chips.getRandomChipByRarity(false,false,rarity3);
+    } while (!codes.includes(chip[2]));
     folders[index*4*30+i*4+0] = chip[0];
     folders[index*4*30+i*4+1] = chip[1];
     folders[index*4*30+i*4+2] = chip[2];

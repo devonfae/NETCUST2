@@ -10,7 +10,7 @@
   <body>
     <div id="romPicker">
     <p>
-     Network Customizer V2.01 build 11<br />
+     Network Customizer V2.01 build 18<br />
      A tool to manage your experience of navigating the networks<br />
      by seeliefae, in association with Dr. Starscream and the Edge Case Collective. Sponsored by Higureya Enterprises.<br />
      Copyright (C) Bumpy Lumpy Productions, Ltd., 1987, 1993, 2001, 2002. This is free software.<br />
@@ -65,68 +65,70 @@
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHIP CODES</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesRandom" name="Codes" value="Random" checked />
+          &nbsp;&nbsp;<input type="checkbox" id="CodesRandom" name="Codes" value="Random" checked />
             <label for="CodesRandom">Assign chip codes randomly</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesShortAlphabet" name="Codes" value="ShortAlphabet" />
+          &nbsp;&nbsp;<input type="checkbox" id="CodesShortAlphabet" name="Codes" value="ShortAlphabet" />
             <label for="CodesShortAlphabet">Reduce possible codes from A–Z (26) to A–P (16)</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesLimitThree" name="Codes" value="LimitThree" />
+          &nbsp;&nbsp;<input type="checkbox" id="CodesLimitThree" name="Codes" value="LimitThree" />
             <label for="CodesLimitThree">Reduce each chip’s possible codes from 5 + * to 3 + *</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesNoStar" name="Codes" value="NoStar" />
+          &nbsp;&nbsp;<input type="checkbox" id="CodesNoStar" name="Codes" value="NoStar" />
             <label for="CodesNoStar">Remove all * codes</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="CodesAllStar" name="Codes" value="AllStar" />
+          &nbsp;&nbsp;<input type="checkbox" id="CodesAllStar" name="Codes" value="AllStar" />
             <label for="CodesAllStar">All chips are *</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHOPS</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopShuffle" name="Shop" value="Shuffle" />
+          &nbsp;&nbsp;<input type="checkbox" id="ShopShuffle" name="Shop" value="Shuffle" />
             <label for="ShopShuffle">Shuffle existing chips</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopRandom" name="Shop" value="Random" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="ShopRandom" name="Shop" value="Random" checked/>
             <label for="ShopRandom">Replace existing chips with random chips</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopFill" name="Shop" value="Fill" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="ShopFill" name="Shop" value="Fill" checked/>
             <label for="ShopFill">Fill empty shop slots with random chips</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopConsolidate" name="Shop" value="Consolidate" disabled/>
+          &nbsp;&nbsp;<input type="checkbox" id="ShopConsolidate" name="Shop" value="Consolidate" disabled/>
             <label for="ShopConsolidate" class="dark">Consolidate HP Memory</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopFreeChips" name="Shop" value="FreeChips" />
+          &nbsp;&nbsp;<input type="checkbox" id="ShopFreeChips" name="Shop" value="FreeChips" />
             <label for="ShopFreeChips">Chips are free</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopFreeItems" name="Shop" value="FreeItems" />
+          &nbsp;&nbsp;<input type="checkbox" id="ShopFreeItems" name="Shop" value="FreeItems" />
             <label for="ShopFreeItems">Items are free</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopInclNavis" name="Shop" value="InclNavis" />
+          &nbsp;&nbsp;<input type="checkbox" id="ShopInclNavis" name="Shop" value="InclNavis" />
             <label for="ShopInclNavis">Include Navi chips</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="ShopInclSecret" name="Shop" value="InclSecret" />
+          &nbsp;&nbsp;<input type="checkbox" id="ShopInclSecret" name="Shop" value="InclSecret" />
             <label for="ShopInclSecret">Include secret chips</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAVIS</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviShuffle" name="Enemy" value="NaviShuffle" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="NaviShuffle" name="Enemy" value="NaviShuffle" checked/>
             <label for="NaviShuffle">Shuffle Navis</label><br/>
-            &nbsp;&nbsp;&nbsp;<input type="checkbox" id="WWWShuffle" name="Enemy" value="WWWShuffle" />
+          &nbsp;&nbsp;<input type="checkbox" id="WWWShuffle" name="Enemy" value="WWWShuffle" />
             <label for="WWWShuffle">Include WWW Navis</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" disabled/>
             <label for="NavisAlwaysDrop">V1 Navis always drop V1 Navi chips</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIRUSES</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="EnemyShuffle" name="Enemy" value="EnemyShuffle" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="EnemyShuffle" name="Enemy" value="EnemyShuffle" checked/>
             <label for="EnemyShuffle">Shuffle same-tier enemies</label><br/>
-            &nbsp;&nbsp;&nbsp;<input type="checkbox" id="EnemyFullShuffle" name="Enemy" value="EnemyFullShuffle" />
+          &nbsp;&nbsp;<input type="checkbox" id="EnemyFullShuffle" name="Enemy" value="EnemyFullShuffle" />
             <label for="EnemyFullShuffle">Shuffle all enemies</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleSame" name="Reward" value="ShuffleSame" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="RewardShuffleSame" name="Reward" value="ShuffleSame" disabled/>
             <label for="RewardShuffleSame">Shuffle same-tier rewards</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardShuffleAll" name="Reward" value="ShuffleAll" />
+          &nbsp;&nbsp;<input type="checkbox" id="RewardShuffleAll" name="Reward" value="ShuffleAll" disabled/>
             <label for="RewardShuffleAll">Shuffle all rewards</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoZenny" name="Reward" value="NoZenny" disabled/>
+          &nbsp;&nbsp;<input type="checkbox" id="RewardNoZenny" name="Reward" value="NoZenny" disabled/>
             <label for="RewardNoZenny" class="dark">Remove all zenny rewards</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoHP" name="Reward" value="NoHP" disabled/>
+          &nbsp;&nbsp;<input type="checkbox" id="RewardNoHP" name="Reward" value="NoHP" disabled/>
             <label for="RewardNoHP" class="dark">Remove all HP rewards</label><br/>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="RewardNoChips" name="Reward" value="NoChips" disabled/>
+          &nbsp;&nbsp;<input type="checkbox" id="RewardNoChips" name="Reward" value="NoChips" disabled/>
             <label for="RewardNoChips" class="dark">Remove all chip rewards</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHER</p>
         <p>
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="MakeNewFolders" name="Other" value="MakeNewFolders" checked/>
+          &nbsp;&nbsp;<input type="checkbox" id="MakeNewFolders" name="Other" value="MakeNewFolders" checked/>
             <label for="MakeNewFolders">Generate new Default Folder</label><br />
-          &nbsp;&nbsp;&nbsp;<input type="checkbox" id="SkipTutorial" name="Other" value="SkipTutorial" disabled/>
-            <label for="SkipTutorial" class="dark">Skip tutorial</label>
+          &nbsp;&nbsp;<input type="checkbox" id="SkipTutorial" name="Other" value="SkipTutorial" disabled/>
+            <label for="SkipTutorial" class="dark">Skip tutorial</label><br />
+          &nbsp;&nbsp;<input type="checkbox" id="Allowance" name="Other" value="Allowance" disabled/>
+            <label for="Allowance" class="dark">Begin with 10,000z</label>
         </p>
         <p>
           <button type="button" id="randomizeRom" class="visually-hidden"></button>

@@ -43,7 +43,7 @@ body {
   color: #00AAAA;
 }
 
-.visually-hidden, input[type=checkbox] {
+.visually-hidden, input[type=checkbox], input[type=radio] {
   position: absolute !important;
   height: 1px;
   width: 1px;

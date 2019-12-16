@@ -10,7 +10,7 @@
   <body>
     <div id="romPicker">
     <p>
-     Network Customizer V2.01 build 19<br />
+     Network Customizer V2.01 build 22<br />
      A tool to manage your experience of navigating the networks<br />
      by seeliefae, in association with Dr. Starscream and the Edge Case Collective. Sponsored by Higureya Enterprises.<br />
      Copyright (C) Bumpy Lumpy Productions, Ltd., 1987, 1993, 2001, 2002. This is free software.<br />
@@ -78,9 +78,11 @@
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHOPS</p>
         <p>
-          &nbsp;&nbsp;<input type="checkbox" id="ShopShuffle" name="Shop" value="Shuffle" />
-            <label for="ShopShuffle">Shuffle existing chips</label><br/>
-          &nbsp;&nbsp;<input type="checkbox" id="ShopRandom" name="Shop" value="Random" checked/>
+          &nbsp;&nbsp;<input type="radio" id="ShopVanilla" name="Shop" value="Vanilla" />
+            <label for="ShopVanilla">Preserve existing shop chips as-is</label><br/>
+          &nbsp;&nbsp;<input type="radio" id="ShopShuffle" name="Shop" value="Shuffle" />
+            <label for="ShopShuffle">Shuffle existing chips between shops</label><br/>
+          &nbsp;&nbsp;<input type="radio" id="ShopRandom" name="Shop" value="Random" checked/>
             <label for="ShopRandom">Replace existing chips with random chips</label><br/>
           &nbsp;&nbsp;<input type="checkbox" id="ShopFill" name="Shop" value="Fill" checked/>
             <label for="ShopFill">Fill empty shop slots with random chips</label><br/>
@@ -95,31 +97,33 @@
           &nbsp;&nbsp;<input type="checkbox" id="ShopInclSecret" name="Shop" value="InclSecret" />
             <label for="ShopInclSecret">Include secret chips</label>
         </p>
-        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAVIS</p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAVIS & VIRUSES</p>
         <p>
+          &nbsp;&nbsp;<input type="radio" id="EnemyVanilla" name="Enemy" value="Vanilla" />
+            <label for="EnemyVanilla">Don't shuffle viruses</label><br/>
+          &nbsp;&nbsp;<input type="radio" id="EnemyShuffle" name="Enemy" value="EnemyShuffle" checked/>
+            <label for="EnemyShuffle">Shuffle same-tier viruses</label><br/>
+          &nbsp;&nbsp;<input type="radio" id="EnemyFullShuffle" name="Enemy" value="EnemyFullShuffle" />
+            <label for="EnemyFullShuffle">Shuffle all viruses</label><br/>
           &nbsp;&nbsp;<input type="checkbox" id="NaviShuffle" name="Enemy" value="NaviShuffle" checked/>
             <label for="NaviShuffle">Shuffle Navis</label><br/>
           &nbsp;&nbsp;<input type="checkbox" id="WWWShuffle" name="Enemy" value="WWWShuffle" />
             <label for="WWWShuffle">Include WWW Navis</label><br/>
-          &nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" disabled/>
-            <label for="NavisAlwaysDrop" class="dark">V1 Navis always drop V1 Navi chips</label>
         </p>
-        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIRUSES</p>
+        <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BATTLE REWARDS</p>
         <p>
-          &nbsp;&nbsp;<input type="checkbox" id="EnemyShuffle" name="Enemy" value="EnemyShuffle" checked/>
-            <label for="EnemyShuffle">Shuffle same-tier enemies</label><br/>
-          &nbsp;&nbsp;<input type="checkbox" id="EnemyFullShuffle" name="Enemy" value="EnemyFullShuffle" />
-            <label for="EnemyFullShuffle">Shuffle all enemies</label><br/>
-          &nbsp;&nbsp;<input type="checkbox" id="RewardShuffleSame" name="Reward" value="ShuffleSame" disabled/>
+          &nbsp;&nbsp;<input type="radio" id="RewardShuffleSame" name="Reward" value="ShuffleSame" disabled/>
             <label for="RewardShuffleSame" class="dark">Shuffle same-tier rewards</label><br/>
-          &nbsp;&nbsp;<input type="checkbox" id="RewardShuffleAll" name="Reward" value="ShuffleAll" disabled/>
+          &nbsp;&nbsp;<input type="radio" id="RewardShuffleAll" name="Reward" value="ShuffleAll" disabled/>
             <label for="RewardShuffleAll" class="dark">Shuffle all rewards</label><br/>
           &nbsp;&nbsp;<input type="checkbox" id="RewardNoZenny" name="Reward" value="NoZenny" disabled/>
             <label for="RewardNoZenny" class="dark">Remove all zenny rewards</label><br/>
           &nbsp;&nbsp;<input type="checkbox" id="RewardNoHP" name="Reward" value="NoHP" disabled/>
             <label for="RewardNoHP" class="dark">Remove all HP rewards</label><br/>
           &nbsp;&nbsp;<input type="checkbox" id="RewardNoChips" name="Reward" value="NoChips" disabled/>
-            <label for="RewardNoChips" class="dark">Remove all chip rewards</label>
+            <label for="RewardNoChips" class="dark">Remove all chip rewards</label><br />
+          &nbsp;&nbsp;<input type="checkbox" id="NaviAlwaysDrop" name="Reward" value="NavisAlwaysDrop" disabled/>
+            <label for="NavisAlwaysDrop" class="dark">V1 Navis always drop V1 Navi chips</label>
         </p>
         <p class="blu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHER</p>
         <p>

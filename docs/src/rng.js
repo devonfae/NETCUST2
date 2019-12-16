@@ -27,7 +27,7 @@ const sfc32 = function(a, b, c, d) {
 let rand;
 
 export const seed = function (a, b, c, d) {
-  rand = sfc32(xmur3(a+c),xmur3(b+d),xmur3(c+b),xmur3(d+a));
+  rand = sfc32(xmur3(a+c)(),xmur3(b+d)(),xmur3(c+b)(),xmur3(d+a)());
 }
 
 export let roll = n => Math.floor(rand()*n);

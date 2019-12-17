@@ -8,6 +8,9 @@ export const doTheThing = function(flags){
   if (flags.MakeNewFolders){
     makeNewFolders();
   }
+  if (flags.Allowance){
+    romData.getView(0x77D8CA,6).set([0xF6,0x32,0x10,0x27,0x00,0x00],0);
+  }
 }
 
 const makeNewFolders = function() {

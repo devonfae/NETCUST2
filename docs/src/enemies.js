@@ -72,7 +72,7 @@ const exchangeEnemies = function(old,nu,keepHp=false){
     if (!keepHp) enemyLibrary.set(enemyRecords[nu[i]],old[i]*8);
     else enemyLibrary.set(enemyRecords[nu[i]].slice(2),old[i]*8+2);
     enemyNameTable.set(enemyNameRecords[nu[i]],old[i]*2);
-    rewards.copyDrops(old[i],nu[i]);
+    rewards.replaceDrops(old[i],nu[i]);
   }
 }
 

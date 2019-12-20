@@ -29,7 +29,7 @@ export let newNaviMemory;
 // 0x15154
 // bosses start 0x80 in
 export const doTheThing = function(flags){
-  enemyLibrary = romData.getView(0x15154,0xB8*8);
+  enemyLibrary = romData.getView(0x15154,0xB9*8);
   assembleEnemyRecord();
   if (flags.EnemyShuffle){
     let enemies = allEnemies.filter(x => 
@@ -77,8 +77,8 @@ const exchangeEnemies = function(old,nu,keepHp=false){
 }
 
 const assembleEnemyRecord = function(){
-  enemyRecords = new Array(0xB8);
-  for (let i = 0; i < 0xB8; i++){
+  enemyRecords = new Array(0xB9);
+  for (let i = 0; i < 0xB9; i++){
     enemyRecords[i] = new Array(8);
     for (let j = 0; j < 8; j++){
       enemyRecords[i][j] = enemyLibrary[i*8+j];

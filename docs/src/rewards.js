@@ -12,7 +12,7 @@ const blankEnemies = [0x7B, 0x7C, 0x7D, 0x7E, 0x7F, 0x95, 0x96, 0x97];
 
 
 export const doTheThing = function(flags){
-  dropTable = romData.getView(0x125E8,0xB8*60);
+  dropTable = romData.getView(0x125E8,0xB9*60);
   assembleDropRecord();  
   //sanitizeDrops();
   if (flags.NavisAlwaysDrop) forceNaviDrops();
@@ -46,12 +46,30 @@ const sanitizeDrops = function(){
       }
     }
   }
-  let oldDrops = [];
-  let newDrops = [];
-  for (let i = 0; i < droppedChipNumbers.length; i++){
-    
-  }
+  let shortlist = removeDuplicates(droppedChipNumbers,droppedChipCodes);
+  droppedChipNumbers = shortlist[0];
+  droppedChipCodes = shortlist[1];
+  
 }
+
+const removeDuplicates = function(list, sublist){
+  let shortlist = [];
+  let shortsub = [];
+  for (i = 0; i < list.length; i++){
+    let unique = true;
+    for (j = 0; j < shortlist.length; j++){
+      if ((shortlist[j] === list[i]) && (shortsub[j] === sublist[i])) {
+        unique = false;
+      }
+    }
+    if (unique) {
+      shortlist.push(list[i]);
+      shortsub.push(sublist[i]);
+    }
+  }
+  return [shortlist, shortsub];
+}
+
 const shuffleDrops = function(which){
 
 }
@@ -60,8 +78,8 @@ const removeEntries = function(which){
 }
 
 const assembleDropRecord = function(){
-  dropRecords = new Array(0xB8);
-  for (let i = 0; i < 0xB8; i++){
+  dropRecords = new Array(0xB9);
+  for (let i = 0; i < 0xB9; i++){
     dropRecords[i] = new Array(3);
     for (let j = 0; j < 3; j++){
       dropRecords[i][j] = new Array(10);
